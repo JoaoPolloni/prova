@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Ingredientes</title>
+</head>
+<body>
+    <style>
+        h1 {
+          color: rgba(255, 0, 0, 0.829);
+          background-color: rgba(10, 182, 10, 0.616);
+          border: 1px solid grey;
+        }
+      </style>
+    <h1>Fazedor de misturebas</h1>
+    <h2>Adicione os ingredientes da sua mistureba</h2>
+    <h3>Ficou muito esquisito ou mudou de ideia? Manipule a vontade os elementos</h3>
+
+    <ul>
+        {% for pessoa in pessoas %}
+            <li>
+                {{ pessoa.id }} - {{ pessoa.nome }} 
+                <a href="{% url 'editar' pessoa.id %}">Editar</a>
+                <a href="{% url 'delete' pessoa.id %}">Deletar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>Tempo total de preparo: {{ tempo_preparo }} minutos</p>
+    <p>Custo estimado total: R$ {{ custo_estimado }}</p>
+
+    <form action="{% url 'salvar' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="nome" placeholder="Nome do ingrediente">
+        <button type="submit">Salvar</button>
+    </form>
+
+    <h5>João Vitor Polloni RA:21120606-2 ESOFT7S</h5>
+    <h6>Raijin Copilot ---- ---- ---- Tema N°: 2</h6>
+</body>
+</html>
